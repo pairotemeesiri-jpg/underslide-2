@@ -4,75 +4,309 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>พระราชกรณียกิจ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            base: '#d9b644',
+                            light: '#f9eb9f',
+                            main: '#c29b25',
+                            medium: '#a8821e',
+                            dark: '#866617',
+                            official: '#b8860b',
+                            text: '#46370d'
+                        }
+                    },
+                    fontFamily: { sarabun: ['Sarabun', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; font-family: 'Sarabun', sans-serif; }
+
         body {
+            background: linear-gradient(180deg, #fff9e6 0%, #f7e8b8 35%, #e9c86c 70%, #d4a017 100%);
+            position: relative;
+            overflow-x: hidden;
+            color: #46370d;
             min-height: 100vh;
-            background: linear-gradient(180deg, #fff1cc 0%, #f2d479 50%, #d4a017 100%);
-            font-family: 'Sarabun', sans-serif;
-            padding: 2rem 1rem;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff8dc;
-            border: 3px solid #b8860b;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 15px rgba(134,102,23,0.25);
-        }
-        h1 {
-            text-align: center;
-            color: #866617;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-        }
-        .menu-item {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 1rem;
-            margin: 0.8rem 0;
-            background: #b8860b;
-            color: #fff;
-            text-decoration: none;
+        }
+
+        body::before, body::after,
+        .decor-line-1, .decor-line-2, .decor-line-3 {
+            content: "";
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            border: 2px solid rgba(184, 134, 11, 0.12);
+            pointer-events: none;
+        }
+        body::before { top: -300px; left: -250px; border-left-color: transparent; border-bottom-color: transparent; }
+        body::after { bottom: -300px; right: -250px; border-right-color: transparent; border-top-color: transparent; }
+        .decor-line-1 { top: 10%; right: -150px; border-top-color: transparent; border-right-color: transparent; }
+        .decor-line-2 { bottom: 15%; left: -150px; border-bottom-color: transparent; border-left-color: transparent; }
+        .decor-line-3 { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 1200px; height: 1200px; border-color: rgba(184, 134, 11, 0.06); }
+
+        .container { width: 100%; max-width: 900px; position: relative; z-index: 1; }
+
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            background: linear-gradient(145deg, #fff8dc, #f8e9c0);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(134, 102, 23, 0.18);
+            overflow: hidden;
+            border: 2px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .slide-item {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .slide-item.active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #866617;
+            margin-bottom: 1.5rem;
+        }
+        .slide-title.small { font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem; }
+
+        .slide-img {
+            width: 100%;
+            max-height: 550px;
+            object-fit: contain;
             border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: transparent;
         }
-        .menu-item:hover {
-            background: #866617;
-            transform: translateX(5px);
-        }
-        .back-btn {
+
+        .btn-more {
+            margin-top: 1.25rem;
+            padding: 0.65rem 2rem;
+            background: linear-gradient(to right, #b8860b, #866617);
+            color: white;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
             display: inline-block;
-            margin-top: 2rem;
-            padding: 0.8rem 2rem;
-            background: #866617;
-            color: #fff;
-            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+        .btn-more:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(184, 134, 11, 0.25);
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #b8860b, #866617);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 8px rgba(134, 102, 23, 0.25);
+        }
+        .nav-btn:hover { background: #866617; transform: translateY(-50%) scale(1.08); }
+        .prev { left: 0.75rem; }
+        .next { right: 0.75rem; }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #b8860b;
+            opacity: 0.4;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .dot.active { opacity: 1; transform: scale(1.3); }
+
+        .skip-btn {
+            margin-top: 1.5rem;
+            padding: 0.7rem 2.2rem;
+            background: linear-gradient(to right, #b8860b, #866617);
+            color: white;
             border-radius: 8px;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.25);
         }
-        .back-btn:hover {
-            background: #6b5012;
+        .skip-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 640px) {
+            .slide-title { font-size: 1.4rem; }
+            .slide-title.small { font-size: 1.1rem; }
+            .nav-btn { width: 36px; height: 36px; font-size: 1rem; }
+            .slide-img { max-height: 400px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>พระราชกรณียกิจ</h1>
 
-        <a href="#" class="menu-item">ด้านการทหารและการบิน</a>
-        <a href="#" class="menu-item">ด้านการกีฬา</a>
-        <a href="#" class="menu-item">ด้านการศึกษา</a>
-        <a href="#" class="menu-item">ด้านการศาสนา</a>
-        <a href="#" class="menu-item">ด้านการเกษตรกรรม</a>
-        <a href="#" class="menu-item">ด้านการแพทย์และสาธารณสุข</a>
-        <a href="#" class="menu-item">ด้านความสัมพันธ์กับต่างประเทศ</a>
-        <a href="#" class="menu-item">ด้านสังคมสงเคราะห์</a>
+    <div class="decor-line-1"></div>
+    <div class="decor-line-2"></div>
+    <div class="decor-line-3"></div>
 
-        <a href="underslide.html" class="back-btn">← กลับหน้าแรก</a>
+  
+
+            <!-- 📌 ส่วนพระราชกรณียกิจ -->
+            <div class="slide-item">
+                <h3 class="slide-title small">พระราชกรณียกิจ<br>ด้านการทหารและการบิน</h3>
+                <img src="https://i.postimg.cc/KYFSvXHw/d-a-nkar-thhar.jpg" alt="พระราชกรณียกิจ" class="slide-img">
+                <a href="https://www.dol.go.th/chbr-banbung/cate-1782807153/cate-1782898129/about-us-1784264881/" target="_blank" rel="noopener noreferrer" class="btn-more">อ่านเพิ่มเติม</a>
+            </div>
+            <div class="slide-item">
+                <h3 class="slide-title small">พระราชกรณียกิจ<br>ด้านการกีฬา</h3>
+                <img src="https://i.postimg.cc/d3DKP8xD/d-ank-la.jpg" alt="พระราชกรณียกิจ" class="slide-img">
+                <a href="https://www.dol.go.th/chbr-banbung/cate-1782807153/cate-1782898129/about-us-1784270561/" target="_blank" rel="noopener noreferrer" class="btn-more">อ่านเพิ่มเติม</a>
+            </div>
+            <div class="slide-item">
+                <h3 class="slide-title small">พระราชกรณียกิจ<br>ด้านการศึกษา</h3>
+                <img src="https://i.postimg.cc/tJnFMcyw/kars-ks.jpg" alt="พระราชกรณียกิจ" class="slide-img">
+                <a href="https://www.dol.go.th/chbr-banbung/cate-1782807153/cate-1782898129/about-us-1784270772/" target="_blank" rel="noopener noreferrer" class="btn-more">อ่านเพิ่มเติม</a>
+            </div>
+            <div class="slide-item">
+                <h3 class="slide-title small">พระราชกรณียกิจ<br>ด้านการศาสนา</h3>
+                <img src="https://i.postimg.cc/sxbqkbWN/d-a-nph-ra-sasna.jpg" alt="พระราชกรณียกิจ" class="slide-img">
+                <a href="https://www.dol.go.th/chbr-banbung/cate-1782807153/cate-1782898129/about-us-1784271724/" target="_blank" rel="noopener noreferrer" class="btn-more">อ่านเพิ่มเติม</a>
+            </div>
+            <div class="slide-item">
+                <h3 class="slide-title small">พระราชกรณียกิจ<br>ด้านการเกษตรกรรม</h3>
+                <img src="https://i.postimg.cc/7LgHmMFq/d-an-kes.jpg" alt="พระราชกรณียกิจ" class="slide-img">
+                <a href="https://www.dol.go.th/chbr-banbung/cate-1782807153/cate-1782898129/about-us-1784272165/" target="_blank" rel="noopener noreferrer" class="btn-more">อ่านเพิ่มเติม</a>
+            </div>
+            <div class="slide-item">
+                <h3 class="slide-title small">พระราชกรณียกิจ<br>ด้านการแพทย์และสาธารณสุข</h3>
+                <img src="https://i.postimg.cc/bNJvpnts/d-a-nka-rsa-tharn-s-kh.jpg" alt="พระราชกรณียกิจ" class="slide-img">
+                <a href="https://www.dol.go.th/chbr-banbung/cate-1782807153/cate-1782898129/about-us-1784272541/" target="_blank" rel="noopener noreferrer" class="btn-more">อ่านเพิ่มเติม</a>
+            </div>
+            <div class="slide-item">
+                <h3 class="slide-title small">พระราชกรณียกิจ<br>ด้านความสัมพันธ์กับต่างประเทศ</h3>
+                <img src="https://i.postimg.cc/t48Jrg7z/d-ant-ang-prathes.jpg" alt="พระราชกรณียกิจ" class="slide-img">
+                <a href="https://www.dol.go.th/chbr-banbung/cate-1782807153/cate-1782898129/about-us-1784272702/" target="_blank" rel="noopener noreferrer" class="btn-more">อ่านเพิ่มเติม</a>
+            </div>
+            <div class="slide-item">
+                <h3 class="slide-title small">พระราชกรณียกิจ<br>ด้านสังคมสงเคราะห์</h3>
+                <img src="https://i.postimg.cc/ZRSrMH0V/d-a-nka-rs-ng-khm-sng-khera-ah.jpg" alt="พระราชกรณียกิจ" class="slide-img">
+                <a href="https://www.dol.go.th/chbr-banbung/cate-1782807153/cate-1782898129/about-us-1784780887/" target="_blank" rel="noopener noreferrer" class="btn-more">อ่านเพิ่มเติม</a>
+            </div>
+
+            <div class="nav-btn prev" id="prevBtn"><i class="fa fa-chevron-left"></i></div>
+            <div class="next nav-btn" id="nextBtn"><i class="fa fa-chevron-right"></i></div>
+        </div>
+        <div class="dots" id="dotsContainer"></div>
     </div>
+
+<script>
+    const slides = document.querySelectorAll('.slide-item');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('dotsContainer');
+    let currentIndex = 0;
+    let slideInterval;
+
+    // 📌 จำนวนรูปพระบรมฉายาลักษณ์ (ถ้าเพิ่มรูปให้แก้เลขนี้ด้วย)
+    const KING_IMAGE_COUNT = 3;
+    // 📌 เวลาแสดงแต่ละรูปพระบรมฉายาลักษณ์ (วินาที)
+    const KING_DISPLAY_TIME = 4;
+    // 📌 เวลาแสดงแต่ละรายการพระราชกรณียกิจ (วินาที)
+    const WORKS_DISPLAY_TIME = 5;
+
+    // สร้างจุดบอกตำแหน่ง
+    slides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = `dot ${i === 0 ? 'active' : ''}`;
+        dot.addEventListener('click', () => {
+            clearInterval(slideInterval);
+            currentIndex = i;
+            showSlide(currentIndex);
+            startTimer();
+        });
+        dotsContainer.appendChild(dot);
+    });
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(index) {
+        slides.forEach((s, i) => {
+            s.classList.toggle('active', i === index);
+            dots[i].classList.toggle('active', i === index);
+        });
+        currentIndex = index;
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
+    }
+
+    // ตั้งเวลาเปลี่ยนตามส่วน
+    function startTimer() {
+        clearInterval(slideInterval);
+        const time = currentIndex < KING_IMAGE_COUNT ? KING_DISPLAY_TIME : WORKS_DISPLAY_TIME;
+        slideInterval = setInterval(nextSlide, time * 1000);
+    }
+
+    // ข้ามไปส่วนพระราชกรณียกิจทันที
+    function goToWorks() {
+        clearInterval(slideInterval);
+        currentIndex = KING_IMAGE_COUNT;
+        showSlide(currentIndex);
+        startTimer();
+    }
+
+    prevBtn.addEventListener('click', () => { clearInterval(slideInterval); prevSlide(); startTimer(); });
+    nextBtn.addEventListener('click', () => { clearInterval(slideInterval); nextSlide(); startTimer(); });
+
+    startTimer();
+</script>
+
 </body>
 </html>
