@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ทรงพระเจริญ</title>
+    <title>พระราชกรณียกิจ</title>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,64 +11,68 @@
             min-height: 100vh;
             background: linear-gradient(180deg, #fff1cc 0%, #f2d479 50%, #d4a017 100%);
             font-family: 'Sarabun', sans-serif;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            padding: 2rem 1rem; position: relative; overflow: hidden;
+            padding: 2rem 1rem;
         }
-        .bg-line { position: absolute; width: 600px; height: 600px; border-radius: 50%; border: 1px solid rgba(134,102,23,0.1); pointer-events: none; }
-        .bg-line:nth-child(1) { top: -200px; left: -150px; }
-        .bg-line:nth-child(2) { bottom: -200px; right: -150px; }
-
-        .frame-box {
-            width: 100%; max-width: 550px;
-            padding: 12px; background: #fff8dc;
-            border: 3px solid #b8860b; border-radius: 12px;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff8dc;
+            border: 3px solid #b8860b;
+            border-radius: 12px;
+            padding: 2rem;
             box-shadow: 0 4px 15px rgba(134,102,23,0.25);
+        }
+        h1 {
             text-align: center;
+            color: #866617;
+            margin-bottom: 2rem;
+            font-size: 2rem;
         }
-        .royal-image { width: 100%; height: auto; display: block; border-radius: 6px; }
-        .title-text {
-            margin-top: 2rem; font-size: 2.2rem; font-weight: 700;
-            color: #866617; text-shadow: 1px 1px 3px rgba(134,102,23,0.2);
-        }
-        .link-btn {
-            display: inline-block;
-            margin-top: 1.8rem;
-            padding: 0.8rem 2rem;
+        .menu-item {
+            display: block;
+            padding: 1rem;
+            margin: 0.8rem 0;
             background: #b8860b;
             color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
             text-decoration: none;
             border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(134,102,23,0.2);
-            cursor: pointer;
         }
-        .link-btn:hover {
+        .menu-item:hover {
             background: #866617;
-            transform: translateY(-2px);
+            transform: translateX(5px);
         }
-
-        @media (max-width: 640px) {
-            .title-text { font-size: 1.7rem; }
-            .frame-box { max-width: 95%; }
-            .link-btn { font-size: 1rem; padding: 0.7rem 1.8rem; }
+        .back-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: #866617;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .back-btn:hover {
+            background: #6b5012;
         }
     </style>
 </head>
 <body>
-    <div class="bg-line"></div>
-    <div class="bg-line"></div>
+    <div class="container">
+        <h1>พระราชกรณียกิจ</h1>
 
-    <div class="frame-box">
-        <img src="https://raw.githubusercontent.com/pairotemeesiri-jpg/king/main/profile10-2.png" alt="พระบรมฉายาลักษณ์" class="royal-image">
+        <a href="#" class="menu-item">ด้านการทหารและการบิน</a>
+        <a href="#" class="menu-item">ด้านการกีฬา</a>
+        <a href="#" class="menu-item">ด้านการศึกษา</a>
+        <a href="#" class="menu-item">ด้านการศาสนา</a>
+        <a href="#" class="menu-item">ด้านการเกษตรกรรม</a>
+        <a href="#" class="menu-item">ด้านการแพทย์และสาธารณสุข</a>
+        <a href="#" class="menu-item">ด้านความสัมพันธ์กับต่างประเทศ</a>
+        <a href="#" class="menu-item">ด้านสังคมสงเคราะห์</a>
+
+        <a href="underslide.html" class="back-btn">← กลับหน้าแรก</a>
     </div>
-    <h1 class="title-text">ทรงพระเจริญ</h1>
-
-    <!-- ✅ ใส่ลิงก์เพจพระราชกรณียกิจของคุณเรียบร้อยแล้ว -->
-    <a href="https://pairotemeesiri-jpg.github.io/underslide-2/Royal-1.html" class="link-btn" target="_blank" rel="noopener noreferrer">
-        พระราชกรณียกิจ
-    </a>
 </body>
 </html>
